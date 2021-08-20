@@ -1,0 +1,14 @@
+const { Router } = require('express');
+const products = require('./products.js');
+
+const router = Router();
+
+router.use('/products', products);
+
+router.use((req, res, next) => {
+  const error = new Error('404 Not found');
+  error.status = 404;
+  next(error);
+});
+
+module.exports = router;
