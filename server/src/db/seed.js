@@ -1,81 +1,97 @@
 const db = require('./db.js');
-const { Product } = require('./models');
+const { Product, ProductType } = require('./models');
 
 async function seed() {
   await db.sync({ force: true });
   console.log('DB Connected');
 
+  // adding product types
+  const mockProductTypes = await Promise.all([
+    ,
+    ProductType.create({
+      name: 'Aerosol'
+    }),
+    ProductType.create({
+      name: 'Crema'
+    }),
+    ProductType.create({
+      name: 'Colirio'
+    }),
+    ProductType.create({
+      name: 'Cápsulas'
+    }),
+    ProductType.create({
+      name: 'Jarabe'
+    }),
+    ProductType.create({
+      name: 'Polvo en suspensión'
+    }),
+  ])
+
+  console.log('Product types seeded');
+
+  // adding products
   const mockProducts = await Promise.all([
     ,
     Product.create({
       code: 12345,
       name: 'Amoxol',
       drug: 'amoxicilina',
-      type: 'Cápsulas',
-      stock: true
+      productTypeId: 1
     }),
     Product.create({
       code: 54321,
       name: 'Notos',
       drug: 'notoxina',
-      type: 'Jarabe',
-      stock: true
+      productTypeId: 1
     }),
     Product.create({
       code: 45678,
       name: 'Dermafix',
       drug: 'acenocumarol',
-      type: 'Colirio',
-      stock: true
+      productTypeId: 2
     }),
     Product.create({
       code: 98765,
       name: 'Carvedilol',
       drug: 'carvediloloide',
-      type: 'Polvo en suspensión',
-      stock: true
+      productTypeId: 3
     }),
     Product.create({
       code: 54632,
       name: 'Clindamicina',
       drug: 'clinda amixilina',
-      type: 'Cápsulas',
-      stock: false
+      productTypeId: 1
     }),
     Product.create({
       code: 85236,
       name: 'Furos',
       drug: 'furosemida',
-      type: 'Cápsulas',
-      stock: true
+      productTypeId: 4
     }),
     Product.create({
       code: 14785,
       name: 'Liotironina',
       drug: 'liotironina',
-      type: 'Aerosol',
-      stock: true
+      productTypeId: 4
     }),
     Product.create({
       code: 63254,
       name: 'Micolis',
       drug: 'minociclina',
-      type: 'Crema',
-      stock: true
+      productTypeId: 6
     }),
     Product.create({
       code: 52698,
       name: 'Propa',
       drug: 'propafenona',
-      type: 'Colirio',
-      stock: false
+      productTypeId: 1
     }),
     Product.create({
       code: 74158,
       name: 'Tramadolina',
       drug: 'tramadol',
-      type: 'Cápsulas',
-      stock: true
+      productTypeId: 2
     })
   ]);
 
@@ -90,7 +106,7 @@ async function runSeed() {
     console.error(error);
     process.exitCode = 1;
   } finally {
-    console.log('Closing DB connection');
+    console.log('DB Populated. Closing DB connection');
     await db.close();
     console.log('DB connection is closed');
   }

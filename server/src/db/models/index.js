@@ -1,5 +1,8 @@
 const Product = require('./product');
+const ProductType = require('./productType');
 
-// If you need to do relationships between models, this is the right place
+// associations
+Product.belongsTo(ProductType);
+ProductType.hasMany(Product);
 
-module.exports = { Product };
+module.exports = { Product, ProductType };

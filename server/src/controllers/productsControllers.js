@@ -1,4 +1,4 @@
-const { Product } = require('../db/models');
+const { Product, ProductType } = require('../db/models');
 const { Op } = require('sequelize');
 
 class ProductsCrud {
@@ -10,14 +10,19 @@ class ProductsCrud {
     const typeOfProduct = req.query.type;
 
     if ( !typeOfProduct ) {
-      return this.product.findAll()
+      return this.product.findAll({
+        include: ProductType
+      })
         .then(products => res.send(products))
         .catch(error => next(error));
     } else if ( typeOfProduct ) {
       return this.product.findAll({
-        where: {
-          type: {
-            [Op.iLike]: `%${typeOfProduct}%`
+        include: {
+          model: ProductType,
+          where: {
+            name: {
+              [Op.iLike]: `%${typeOfProduct}%`
+            }
           }
         }
       })

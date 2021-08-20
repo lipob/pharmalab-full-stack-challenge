@@ -16,14 +16,6 @@ const Product = db.define('product', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  type: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  stock: {
-    type: Sequelize.BOOLEAN,
-    defaultValue: true
-  }
 });
 
 module.exports = Product;
