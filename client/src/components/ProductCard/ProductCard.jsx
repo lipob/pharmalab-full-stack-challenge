@@ -1,8 +1,10 @@
 import React from 'react';
 
-function ProductCard() {
+function ProductCard({ product }) {
   return (
-    <div>I am Product Card</div>
+    <div>
+      {product.name}
+    </div>
   );
 }
 
