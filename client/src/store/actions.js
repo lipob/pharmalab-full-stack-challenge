@@ -10,7 +10,6 @@ const apiUrl = 'http://localhost:3001/'
 
 export const getProducts = () => async (dispatch) => {
   try {
-    console.log('request')
     const { data } = await axios.get(`${apiUrl}products`);
     dispatch({
       type: GET_PRODUCTS,
