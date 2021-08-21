@@ -39,8 +39,11 @@ class ProductsCrud {
     }
   }
 
-  updateProduct = (req, res, next) => {
-    return
+  addProduct = (req, res, next) => {
+    const product = req.body
+    return this.product.create(product)
+      .then(newProduct => res.send(newProduct))
+      .catch(error => next(error));
   }
 
 }
