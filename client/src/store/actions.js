@@ -14,7 +14,20 @@ export const getProducts = () => async (dispatch) => {
     dispatch({
       type: GET_PRODUCTS,
       payload: data
-    })
+    });
+  }
+  catch(error) {
+    console.error(error);
+  }
+}
+
+export const getProductTypes = () => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`${apiUrl}productTypes`);
+    dispatch({
+      type: GET_PRODUCT_TYPES,
+      payload: data
+    });
   }
   catch(error) {
     console.error(error);
