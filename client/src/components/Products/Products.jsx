@@ -36,14 +36,19 @@ function Products() {
       setProducts(storeProducts);
     }
     if(filters.searchTerm.length || filters.typeOption.length) {
-      if(filters.typeOption.length && filters.typeOption) {
+      if(filters.typeOption.length) {
         const type = filters.typeOption
-        const currentProducts = storeProducts.filter(product => product.productType.name === type)
-        setProducts(currentProducts);
-      }
-      if(filters.searchTerm.length) {
+        const currentProductsByType = storeProducts.filter(product => product.productType.name === type)
+        if (filters.searchTerm.length) {
+          const term = filters.searchTerm
+          const currentProducts = currentProductsByType.filter(product => filterBySearchTerm(term, product.name) === true)
+          setProducts(currentProducts);
+        } else {
+          setProducts(currentProductsByType);
+        }
+      } else if (!filters.typeOption.length && filters.searchTerm.length) {
         const term = filters.searchTerm
-        const currentProducts = products.filter(product => filterBySearchTerm(term, product.name) === true)
+        const currentProducts = storeProducts.filter(product => filterBySearchTerm(term, product.name) === true)
         setProducts(currentProducts);
       }
     } 
