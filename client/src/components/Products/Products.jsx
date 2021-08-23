@@ -35,6 +35,7 @@ function Products() {
     if(filters.searchTerm === '' && filters.typeOption === '') {
       setProducts(storeProducts);
     }
+    // filter by type and term
     if(filters.searchTerm.length || filters.typeOption.length) {
       if(filters.typeOption.length) {
         const type = filters.typeOption
@@ -83,10 +84,10 @@ function Products() {
 
   return (
     <div className="componentsWrapper">
-      <div>
-        <h2>Listado de productos</h2>
+      <div className="componentHeader">
+        <h2>Listado de medicamentos</h2>
         <Link to="create-product">
-          <button>Crear producto</button>
+          <button>Nuevo medicamento</button>
         </Link>
         <h4>Tipo: {filters.typeOption.length ? filters.typeOption : 'Todos'}</h4>        
       </div>

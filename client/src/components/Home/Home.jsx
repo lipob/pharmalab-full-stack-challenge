@@ -6,7 +6,7 @@ function Home() {
     <div className="componentsWrapper">
       <h1>Pharmaceutical Lab Full Stack Challenge</h1>
       <Link to ="products">
-        <button>Nuestros productos</button>
+        <button>Nuestros medicamentos</button>
       </Link>
     </div>
   );

@@ -9,7 +9,8 @@ function Header() {
         <h1 className="headerLogo">{`<MBSoft/>`}</h1>
         <nav>
           <Link to="/">Inicio</Link>
-          <Link to="/products">Productos</Link>
+          <Link to="/products">Medicamentos</Link>
+          <Link to="product-types">Tipos de medicamento</Link>
         </nav>
       </div>
     </div>

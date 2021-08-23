@@ -33,3 +33,16 @@ export const getProductTypes = () => async (dispatch) => {
     console.error(error);
   }
 }
+
+export const createProdcut = (newProduct) => async (dispatch) => {
+  try {
+    const {data } = await axios.post(`${apiUrl}products`, newProduct);
+    dispatch({
+      type: CREATE_PRODUCT,
+      payload: data
+    })
+  }
+  catch(error) {
+    console.error(error);
+  }
+}
