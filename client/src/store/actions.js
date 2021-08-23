@@ -4,6 +4,7 @@ export const GET_PRODUCTS = 'GET_PRODUCTS';
 export const GET_PRODUCT_TYPES = 'GET_PRODUCT_TYPES';
 export const CREATE_PRODUCT_TYPE = 'CREATE_PRODUCT_TYPE';
 export const REMOVE_PRODUCT_TYPE = 'REMOVE_PRODUCT_TYPE';
+export const RESTORE_PRODUCT_TYPE = 'RESTORE_PRODUCT_TYPE';
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
 
 const apiUrl = 'http://localhost:3001/'
@@ -17,7 +18,7 @@ export const getProducts = () => async (dispatch) => {
       if (product.productType === null) {
         product.productType = {
           id: 0,
-          name: 'no especificado'
+          name: 'No especificado'
         }
       }
     })
@@ -81,5 +82,18 @@ export const removeProductType = (typeId) => async (dispatch) => {
   }
   catch(error) {
     console.error(error);
+  }
+}
+
+export const restoreRemovedType = (typeId) => async (dispatch) => {
+  try {
+    const { data } = await axios.put(`${apiUrl}product-types/restore/${typeId}`);
+    dispatch({
+      type: RESTORE_PRODUCT_TYPE,
+      payload: data
+    })
+  }
+  catch(error) {
+    console.error(error)
   }
 }

@@ -4,3 +4,12 @@
   max-width: 400px;
   margin: 0 auto;
 }
+.form-group-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.form-group-type a {
+  font-size: 0.8em;
+  margin-bottom: 4px;
+}

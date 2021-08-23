@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProductTypes, createProdcut, getProducts } from '../../store/actions';
+import { Link } from 'react-router-dom';
 import './CreateProduct.css'
 
 function CreateProduct() {
@@ -68,9 +69,11 @@ function CreateProduct() {
             />
           </div>
           <div className="form-group mb-05">
-            <div>
+            <div className="form-group-type">
               <label>Tipo de medicamento</label>
-              <span>Gestionar tipos</span>
+              <Link to="/product-types">
+                <span>Gestionar tipos</span>
+              </Link>
             </div>
             <select vale={newProductBody.type} name="productTypeId" onChange={handleChange}>
               <option value="">

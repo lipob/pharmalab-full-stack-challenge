@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createProductType, getProductTypes, removeProductType } from '../../store/actions';
+import { createProductType, getProductTypes, removeProductType, restoreRemovedType } from '../../store/actions';
 import ProductTypeCard from '../ProductTypeCard/ProductTypeCard';
 
 
@@ -9,6 +9,8 @@ function ProductTypes() {
   const [newProductTypeBody, setNewProductTypeBody] = useState({
     name: ''
   });
+  const [productTypeCreated, setProductTypeCreated] = useState({});
+  const [removedType, setRemovedType] = useState('');
 
   const dispatch = useDispatch();
 
@@ -18,15 +20,27 @@ function ProductTypes() {
 
   useEffect(() => {
     dispatch(getProductTypes());
+    setProductTypeCreated({});
+    setRemovedType('');
   }, [dispatch]);
 
   useEffect(() => {
     dispatch(getProductTypes());
-  }, [storeNewProductType, storeRemovedProductType])
+  }, [storeNewProductType, storeRemovedProductType]);
+
+  useEffect(() => {
+    setProductTypeCreated(storeNewProductType);
+  }, [storeNewProductType]);
 
   useEffect(() => {
     setProductTypes(storeProductTypes);
-  }, [storeProductTypes])
+  }, [storeProductTypes]);
+
+  useEffect(() => {
+    if (storeRemovedProductType > 0) {
+      setRemovedType(storeRemovedProductType);
+    }
+  }, [storeRemovedProductType]);
 
   function handleChange(event) {
     setNewProductTypeBody({
@@ -41,6 +55,7 @@ function ProductTypes() {
     setNewProductTypeBody({
       name: ''
     });
+    setRemovedType('');
   }
 
   function handleRemove(typeId) {
@@ -48,12 +63,28 @@ function ProductTypes() {
     setNewProductTypeBody({
       name: ''
     });
+    setProductTypeCreated({});
+  }
+
+  function handleRestoreType(id) {
+    dispatch(restoreRemovedType(id));
+    setRemovedType('');
   }
 
   return (
     <div className="components-wrapper">
       <div className="component-header text-center">
-        <h2>Tipos de medicamentos</h2>        
+        <h2>Tipos de medicamentos</h2>
+        {productTypeCreated.name 
+          ? <h4 className="my-15 success">Tipo creado con éxito! {productTypeCreated.name}</h4> 
+          : null}
+        {removedType > 0
+          ? <h4 className="my-15 warning">
+              Tipo borrado
+              <span onClick={() => handleRestoreType(removedType)} className="undo-link"> Deshacer</span>
+            </h4> 
+          : null}
+        
       </div>
       <div className="list-container">
         <div className="mb-15">

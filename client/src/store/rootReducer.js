@@ -1,11 +1,19 @@
-import { CREATE_PRODUCT, CREATE_PRODUCT_TYPE, GET_PRODUCTS, GET_PRODUCT_TYPES, REMOVE_PRODUCT_TYPE } from './actions';
+import { 
+  CREATE_PRODUCT, 
+  CREATE_PRODUCT_TYPE, 
+  GET_PRODUCTS, 
+  GET_PRODUCT_TYPES, 
+  REMOVE_PRODUCT_TYPE, 
+  RESTORE_PRODUCT_TYPE 
+} from './actions';
 
 const initialState = {
   products: [],
   productTypes: [],
   newProduct: {},
   newProductType: {},
-  removedProductType: {}
+  removedProductType: '',
+  restoredProductType: {}
 }
 
 function rootReducer(state = initialState, action) {
@@ -34,6 +42,12 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         removedProductType: action.payload
+      }
+    case RESTORE_PRODUCT_TYPE:
+      return {
+        ...state,
+        removedProductType: 0,
+        restoredProductType: action.payload
       }
     default: return state;
   }
