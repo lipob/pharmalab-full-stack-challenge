@@ -101,11 +101,11 @@ function Products() {
           handleChange={handleChange} 
           clearFilters={clearFilters}
         />
-        <div className="list-heading">
-          <span>Código</span>
-          <span>Nombre comercial</span>
-          <span>Droga</span>
-          <span>Tipo</span>
+        <div className="list-heading flex">
+          <span className="w-20">Código</span>
+          <span className="w-40">Nombre comercial</span>
+          <span className="w-20">Droga</span>
+          <span className="w-20">Tipo</span>
         </div>
         {products && products.map(product => (
           <ProductCard product={product} key={product.code} />

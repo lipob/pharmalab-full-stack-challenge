@@ -1,0 +1,11 @@
+div.home {
+  height: calc(100vh - 148px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 60px;;
+}
+
+.home h1 {
+  margin-bottom: 24px;;
+}

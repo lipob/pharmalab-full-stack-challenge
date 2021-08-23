@@ -5,7 +5,7 @@ const productTypes = require('./productTypes.js');
 const router = Router();
 
 router.use('/products', products);
-router.use('/productTypes/', productTypes),
+router.use('/product-types/', productTypes),
 
 router.use((req, res, next) => {
   const error = new Error('404 Not found');

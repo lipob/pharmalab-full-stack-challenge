@@ -11,7 +11,9 @@ class ProductsCrud {
 
     if ( !typeOfProduct ) {
       return this.product.findAll({
-        include: ProductType
+        include: {
+          model: ProductType
+        }
       })
         .then(products => res.send(products))
         .catch(error => next(error));
