@@ -52,22 +52,31 @@ function ProductTypes() {
 
   return (
     <div className="components-wrapper">
-      <div className="component-header">
+      <div className="component-header text-center">
         <h2>Tipos de medicamentos</h2>        
       </div>
       <div className="list-container">
-        <div>
-          <h5>Crear nuevo tipo</h5>
+        <div className="mb-15">
+          <h5 className="mb-05">Crear nuevo tipo</h5>
           <form onSubmit={handleSubmit}>
-            <div>
-              <span>Tipo / Formato</span>
-              <input type="text" name="name" value={newProductTypeBody.name} onChange={handleChange} />
+            <div className="form-groupx">
+              <label>Tipo / Formato</label>
+              <div>
+                <input 
+                  type="text" 
+                  name="name" 
+                  value={newProductTypeBody.name} 
+                  onChange={handleChange}
+                  placeholder="Ingrese un tipo o formato"
+                  className="mr-20"
+                />
+                <button type="submit">Crear</button>
+              </div>
             </div>
-            <button type="submit">Crear</button>
           </form>
         </div>
         <div>
-          <h5>Tipos en existencia</h5>
+          <h5 className="mb-05">Tipos en existencia</h5>
           <div className="list-heading flex">
             <span className="w-20">ID</span>
             <span className="w-40">Tipo</span>

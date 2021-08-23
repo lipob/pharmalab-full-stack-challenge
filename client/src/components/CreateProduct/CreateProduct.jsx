@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProductTypes, createProdcut, getProducts } from '../../store/actions';
+import './CreateProduct.css'
 
 function CreateProduct() {
   const [newProductBody, setNewProduct] = useState({
@@ -50,19 +51,27 @@ function CreateProduct() {
 
   return (
     <div className="components-wrapper">
-      <div className="component-header">
+      <div className="component-header text-center">
         <h2>Crear nuevo medicamento</h2>
-        {productCreated.name ? <h4 className="product-created">¡Producto creado con éxito! {productCreated.name}</h4> : null}
+        {productCreated.name ? <h4 className="product-created my-15 success">¡Producto creado con éxito! {productCreated.name}</h4> : null}
       </div>
-      <div>
+      <div className="product-create-form-container">
         <form onSubmit={handleSubmit}>
-          <div>
-            <span>Código</span>
-            <input type="text" name="code" value={newProductBody.code} onChange={handleChange} />
+          <div className="form-group mb-05">
+            <label>Código</label>
+            <input 
+              type="text" 
+              name="code" 
+              value={newProductBody.code} 
+              onChange={handleChange}
+              placeholder="Ej. 12345"
+            />
           </div>
-          <div>
-            <span>Tipo de medicamento</span>
-            <span>Gestionar tipos</span>
+          <div className="form-group mb-05">
+            <div>
+              <label>Tipo de medicamento</label>
+              <span>Gestionar tipos</span>
+            </div>
             <select vale={newProductBody.type} name="productTypeId" onChange={handleChange}>
               <option value="">
                 Seleccionar...
@@ -72,12 +81,12 @@ function CreateProduct() {
               ))}
             </select>
           </div>
-          <div>
-            <span>Nombre comercial</span>
+          <div className="form-group mb-05">
+            <label>Nombre comercial</label>
             <input type="text" name="name" value={newProductBody.name} onChange={handleChange} />
           </div>
-          <div>
-            <span>Droga</span>
+          <div className="form-group mb-15">
+            <label>Droga</label>
             <input type="text" name="drug" value={newProductBody.drug} onChange={handleChange} />
           </div>
           <button type="submit">Guardar</button>
