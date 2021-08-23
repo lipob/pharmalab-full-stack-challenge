@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getProducts, getProductTypes } from '../../store/actions';
 import ProductCard from '../ProductCard/ProductCard';
 import ProductFilters from '../ProductFilters/ProductFilters';
+import './Products.css'
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -83,26 +84,32 @@ function Products() {
   }
 
   return (
-    <div className="componentsWrapper">
-      <div className="componentHeader">
+    <div className="components-wrapper products-list">
+      <div className="component-header flex">
         <h2>Listado de medicamentos</h2>
         <Link to="create-product">
           <button>Nuevo medicamento</button>
         </Link>
-        <h4>Tipo: {filters.typeOption.length ? filters.typeOption : 'Todos'}</h4>        
       </div>
-      <div>
+      <div className="message-area text-center">
+        <h4>Tipo: {filters.typeOption.length ? filters.typeOption : 'Todos'}</h4>
+      </div>
+      <div className="list-container">
         <ProductFilters 
           filters={filters}
           productTypes={productTypes} 
           handleChange={handleChange} 
           clearFilters={clearFilters}
         />
-        <div>
-          {products && products.map(product => (
-            <ProductCard product={product} key={product.code} />
-          ))}
+        <div className="list-heading">
+          <span>Código</span>
+          <span>Nombre comercial</span>
+          <span>Droga</span>
+          <span>Tipo</span>
         </div>
+        {products && products.map(product => (
+          <ProductCard product={product} key={product.code} />
+        ))}
       </div>
     </div>
   );

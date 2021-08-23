@@ -4,7 +4,7 @@ import './Header.css';
 
 function Header() {
   return (
-    <div className="headerWrapper">
+    <div className="header-wrapper">
       <div>
         <h1 className="headerLogo">{`<MBSoft/>`}</h1>
         <nav>

@@ -23,7 +23,7 @@ export const getProducts = () => async (dispatch) => {
 
 export const getProductTypes = () => async (dispatch) => {
   try {
-    const { data } = await axios.get(`${apiUrl}productTypes`);
+    const { data } = await axios.get(`${apiUrl}product-types`);
     dispatch({
       type: GET_PRODUCT_TYPES,
       payload: data
@@ -40,7 +40,33 @@ export const createProdcut = (newProduct) => async (dispatch) => {
     dispatch({
       type: CREATE_PRODUCT,
       payload: data
-    })
+    });
+  }
+  catch(error) {
+    console.error(error);
+  }
+}
+
+export const createProductType = (newProductType) => async (dispatch) => {
+  try {
+    const { data } = await axios.post(`${apiUrl}product-types`, newProductType);
+    dispatch({
+      type: CREATE_PRODUCT_TYPE,
+      payload: data
+    });
+  }
+  catch(error) {
+    console.error(error);
+  }
+}
+
+export const removeProductType = (typeId) => async (dispatch) => {
+  try {
+    const { data } = await axios.delete(`${apiUrl}product-types/${typeId}`);
+    dispatch({
+      type: REMOVE_PRODUCT_TYPE,
+      payload: data
+    });
   }
   catch(error) {
     console.error(error);

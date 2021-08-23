@@ -49,8 +49,8 @@ function CreateProduct() {
 
 
   return (
-    <div className="componentsWrapper">
-      <div className="componentHeader">
+    <div className="components-wrapper">
+      <div className="component-header">
         <h2>Crear nuevo medicamento</h2>
         {productCreated.name ? <h4 className="product-created">¡Producto creado con éxito! {productCreated.name}</h4> : null}
       </div>
