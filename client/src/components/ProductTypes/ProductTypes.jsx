@@ -7,7 +7,6 @@ import ProductTypeCard from '../ProductTypeCard/ProductTypeCard';
 function ProductTypes() {
   const [productTypes, setProductTypes] = useState([]);
   const [newProductTypeBody, setNewProductTypeBody] = useState({
-    id: '',
     name: ''
   });
 
@@ -40,7 +39,6 @@ function ProductTypes() {
     event.preventDefault();
     dispatch(createProductType(newProductTypeBody));
     setNewProductTypeBody({
-      id: '',
       name: ''
     });
   }
@@ -48,7 +46,6 @@ function ProductTypes() {
   function handleRemove(typeId) {
     dispatch(removeProductType(typeId));
     setNewProductTypeBody({
-      id: '',
       name: ''
     });
   }
@@ -62,10 +59,6 @@ function ProductTypes() {
         <div>
           <h5>Crear nuevo tipo</h5>
           <form onSubmit={handleSubmit}>
-            <div>
-              <span>ID</span>
-              <input type="text" name="id" value={newProductTypeBody.id} onChange={handleChange} />
-            </div>
             <div>
               <span>Tipo / Formato</span>
               <input type="text" name="name" value={newProductTypeBody.name} onChange={handleChange} />

@@ -11,6 +11,17 @@ const apiUrl = 'http://localhost:3001/'
 export const getProducts = () => async (dispatch) => {
   try {
     const { data } = await axios.get(`${apiUrl}products`);
+    
+    // create generic product types in case of deleted product types (null)
+    data.forEach(product => {
+      if (product.productType === null) {
+        product.productType = {
+          id: 0,
+          name: 'no especificado'
+        }
+      }
+    })
+
     dispatch({
       type: GET_PRODUCTS,
       payload: data
