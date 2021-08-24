@@ -6,6 +6,7 @@ export const CREATE_PRODUCT_TYPE = 'CREATE_PRODUCT_TYPE';
 export const REMOVE_PRODUCT_TYPE = 'REMOVE_PRODUCT_TYPE';
 export const RESTORE_PRODUCT_TYPE = 'RESTORE_PRODUCT_TYPE';
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';
+export const RESET_TEMP_STATE = 'RESET_TEMP_STATE';
 
 const apiUrl = 'http://localhost:3001/'
 
@@ -95,5 +96,11 @@ export const restoreRemovedType = (typeId) => async (dispatch) => {
   }
   catch(error) {
     console.error(error)
+  }
+}
+
+export const resetTempState = () => {
+  return {
+    type: RESET_TEMP_STATE
   }
 }

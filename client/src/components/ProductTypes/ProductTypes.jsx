@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createProductType, getProductTypes, removeProductType, restoreRemovedType } from '../../store/actions';
+import { 
+  createProductType, 
+  getProductTypes, 
+  removeProductType, 
+  restoreRemovedType,
+  resetTempState
+  } from '../../store/actions';
 import ProductTypeCard from '../ProductTypeCard/ProductTypeCard';
 
 
@@ -19,9 +25,15 @@ function ProductTypes() {
   const storeRemovedProductType = useSelector(state => state.removedProductType);
 
   useEffect(() => {
-    dispatch(getProductTypes());
-    setProductTypeCreated({});
+    dispatch(resetTempState());
+    setNewProductTypeBody({
+      name: ''
+    });
     setRemovedType('');
+  }, [])
+  
+  useEffect(() => {
+    dispatch(getProductTypes());
   }, [dispatch]);
 
   useEffect(() => {
@@ -39,6 +51,7 @@ function ProductTypes() {
   useEffect(() => {
     if (storeRemovedProductType > 0) {
       setRemovedType(storeRemovedProductType);
+      dispatch(resetTempState());
     }
   }, [storeRemovedProductType]);
 
@@ -68,6 +81,7 @@ function ProductTypes() {
 
   function handleRestoreType(id) {
     dispatch(restoreRemovedType(id));
+    dispatch(resetTempState());
     setRemovedType('');
   }
 
@@ -79,8 +93,8 @@ function ProductTypes() {
           ? <h4 className="my-15 success">Tipo creado con éxito! {productTypeCreated.name}</h4> 
           : null}
         {removedType > 0
-          ? <h4 className="my-15 warning">
-              Tipo borrado
+          ? <h4 className="my-15">
+              Tipo borrado ID: {removedType} | 
               <span onClick={() => handleRestoreType(removedType)} className="undo-link"> Deshacer</span>
             </h4> 
           : null}

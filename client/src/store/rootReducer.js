@@ -4,7 +4,8 @@ import {
   GET_PRODUCTS, 
   GET_PRODUCT_TYPES, 
   REMOVE_PRODUCT_TYPE, 
-  RESTORE_PRODUCT_TYPE 
+  RESTORE_PRODUCT_TYPE ,
+  RESET_TEMP_STATE
 } from './actions';
 
 const initialState = {
@@ -12,7 +13,7 @@ const initialState = {
   productTypes: [],
   newProduct: {},
   newProductType: {},
-  removedProductType: '',
+  removedProductType: 0,
   restoredProductType: {}
 }
 
@@ -46,8 +47,14 @@ function rootReducer(state = initialState, action) {
     case RESTORE_PRODUCT_TYPE:
       return {
         ...state,
-        removedProductType: 0,
         restoredProductType: action.payload
+      }
+    case RESET_TEMP_STATE:
+      return {
+        ...state,
+        newProductType: {},
+        removedProductType: 0,
+        restoredProductType: {}
       }
     default: return state;
   }
