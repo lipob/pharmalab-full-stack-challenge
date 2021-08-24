@@ -110,6 +110,9 @@ function Products() {
         {products && products.map(product => (
           <ProductCard product={product} key={product.code} />
         ))}
+        {!products.length && (filters.searchTerm.length || filters.typeOption.length) 
+          ? <span>No hay resultados</span> 
+          : null}
       </div>
     </div>
   );
