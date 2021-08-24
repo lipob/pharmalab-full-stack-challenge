@@ -1,4 +1,4 @@
-<img src="https://digitalstudio.com.ar/docs/ticket-2-count-unread-messages.JPG" alt="App preview" />
+<img src="https://digitalstudio.com.ar/docs/mbsoft-challenge-app-preview.jpg" alt="App preview" />
 
 # Pharmaceutical Lab Full Stack Challenge
 
