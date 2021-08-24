@@ -133,6 +133,9 @@ function ProductTypes() {
               handleRemove={handleRemove} 
             />
           ))}
+          {!productTypes.length
+          ? <span>No hay tipos especificados</span> 
+          : null}
         </div>
       </div>
     </div>

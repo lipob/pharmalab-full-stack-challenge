@@ -34,10 +34,12 @@ function CreateProduct() {
 
   function handleChange(event) {
     // validate form input
-    if (event.target.name === 'code' && validateForm(event.target.name, event.target.value) === false) {
-      setInputErrorMessage('El dódigo solo puede contener números');
-    } else {
-      setInputErrorMessage('');
+    if (event.target.name === 'code')  {
+      if (validateForm(event.target.name, event.target.value) === false) {
+        setInputErrorMessage('El dódigo solo puede contener números');
+      } else {
+        setInputErrorMessage('');
+      }
     }
     setNewProduct({
       ...newProductBody,
@@ -47,13 +49,15 @@ function CreateProduct() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(createProdcut(newProductBody));
-    setNewProduct({
-      code: '',
-      productTypeId: '',
-      name: '',
-      drug: ''
-    });
+    if (!inputErrorMessage.length) {
+      dispatch(createProdcut(newProductBody));
+      setNewProduct({
+        code: '',
+        productTypeId: '',
+        name: '',
+        drug: ''
+      });
+    }
   }
 
   function validateForm(input, data) {
