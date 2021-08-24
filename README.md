@@ -1,3 +1,5 @@
+<img src="https://digitalstudio.com.ar/docs/ticket-2-count-unread-messages.JPG" alt="App preview" />
+
 # Pharmaceutical Lab Full Stack Challenge
 
 This application allows the user to view a list of products and filter the results by search term and type of product. The user can create new products and types of product. Also, the user can delete and restore type of produtcs.
