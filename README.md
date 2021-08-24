@@ -11,7 +11,7 @@ Front-end: React.js, Redux, HTML, CSS, JavaScript.
 
 Clone the repository and then:
 
-### Server foñder
+### Server folder
 
 **npm install**
 
