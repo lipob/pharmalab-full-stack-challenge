@@ -25,4 +25,4 @@ Clone the repository and then:
 
 **npm start**
 
-( Require Node.js to be installed )
+(Require Node.js to be installed)
