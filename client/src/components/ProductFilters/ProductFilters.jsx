@@ -2,28 +2,29 @@ import React from 'react';
 
 function ProductFilters({ filters, productTypes, handleChange, clearFilters }) {
   return (
-    <div>
-      <div className="searchBar">
-        <input 
-          type="text" 
-          name="searchTerm" 
-          value={filters.searchTerm} 
-          onChange={handleChange} 
-          placeholder="Buscar productos" />
-      </div>
-      <div className="selectForm">
-        <select value={filters.typeOption} onChange={handleChange} name="typeOption">
-          <option value="" disabled>
-            Seleccionar...
-          </option>
-          {productTypes && productTypes.map((type) => (
-            <option value={type.name} key={type.id}>{type.name}</option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <button onClick={clearFilters}>Limpiar filtros</button>
-      </div>
+    <div className="filters-container flex mb-15">
+      <input 
+        type="text" 
+        name="searchTerm" 
+        value={filters.searchTerm} 
+        onChange={handleChange} 
+        placeholder="Buscar productos"
+        className="w-50 mr-20"
+        />
+      <select 
+        value={filters.typeOption} 
+        onChange={handleChange} 
+        name="typeOption"
+        className="w-25 mr-20"
+      >
+        <option value="" disabled>
+          Seleccionar...
+        </option>
+        {productTypes && productTypes.map((type) => (
+          <option value={type.name} key={type.id}>{type.name}</option>
+        ))}
+      </select>
+      <button onClick={clearFilters} className="w-25 btn-secondary">Limpiar filtros</button>
     </div>
   );
 }

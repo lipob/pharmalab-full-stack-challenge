@@ -4,12 +4,13 @@ import './Header.css';
 
 function Header() {
   return (
-    <div className="headerWrapper">
+    <div className="header-wrapper">
       <div>
         <h1 className="headerLogo">{`<MBSoft/>`}</h1>
         <nav>
           <Link to="/">Inicio</Link>
-          <Link to="/products">Productos</Link>
+          <Link to="/products">Medicamentos</Link>
+          <Link to="product-types">Tipos de medicamento</Link>
         </nav>
       </div>
     </div>

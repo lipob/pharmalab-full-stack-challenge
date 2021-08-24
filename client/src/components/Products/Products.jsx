@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getProducts, getProductTypes } from '../../store/actions';
 import ProductCard from '../ProductCard/ProductCard';
 import ProductFilters from '../ProductFilters/ProductFilters';
+import './Products.css'
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -35,15 +36,21 @@ function Products() {
     if(filters.searchTerm === '' && filters.typeOption === '') {
       setProducts(storeProducts);
     }
+    // filter by type and term
     if(filters.searchTerm.length || filters.typeOption.length) {
-      if(filters.typeOption.length && filters.typeOption) {
+      if(filters.typeOption.length) {
         const type = filters.typeOption
-        const currentProducts = storeProducts.filter(product => product.productType.name === type)
-        setProducts(currentProducts);
-      }
-      if(filters.searchTerm.length) {
+        const currentProductsByType = storeProducts.filter(product => product.productType.name === type)
+        if (filters.searchTerm.length) {
+          const term = filters.searchTerm
+          const currentProducts = currentProductsByType.filter(product => filterBySearchTerm(term, product.name) === true)
+          setProducts(currentProducts);
+        } else {
+          setProducts(currentProductsByType);
+        }
+      } else if (!filters.typeOption.length && filters.searchTerm.length) {
         const term = filters.searchTerm
-        const currentProducts = products.filter(product => filterBySearchTerm(term, product.name) === true)
+        const currentProducts = storeProducts.filter(product => filterBySearchTerm(term, product.name) === true)
         setProducts(currentProducts);
       }
     } 
@@ -77,26 +84,35 @@ function Products() {
   }
 
   return (
-    <div className="componentsWrapper">
-      <div>
-        <h2>Listado de productos</h2>
+    <div className="components-wrapper products-list">
+      <div className="component-header flex">
+        <h2>Listado de medicamentos</h2>
         <Link to="create-product">
-          <button>Crear producto</button>
+          <button>Nuevo medicamento</button>
         </Link>
-        <h4>Tipo: {filters.typeOption.length ? filters.typeOption : 'Todos'}</h4>        
       </div>
-      <div>
+      <div className="message-area text-center">
+        <h4>Tipo: {filters.typeOption.length ? filters.typeOption : 'Todos'}</h4>
+      </div>
+      <div className="list-container">
         <ProductFilters 
           filters={filters}
           productTypes={productTypes} 
           handleChange={handleChange} 
           clearFilters={clearFilters}
         />
-        <div>
-          {products && products.map(product => (
-            <ProductCard product={product} key={product.code} />
-          ))}
+        <div className="list-heading flex">
+          <span className="w-20">Código</span>
+          <span className="w-40">Nombre comercial</span>
+          <span className="w-20">Droga</span>
+          <span className="w-20">Tipo</span>
         </div>
+        {products && products.map(product => (
+          <ProductCard product={product} key={product.code} />
+        ))}
+        {!products.length && (filters.searchTerm.length || filters.typeOption.length) 
+          ? <span>No hay resultados</span> 
+          : null}
       </div>
     </div>
   );

@@ -20,13 +20,12 @@ class ProductTypesCrud {
 
   removeProductType = (req, res, next) => {
     const id = req.params.id;
-    console.log(id)
     return this.productType.destroy({
       where: {
         id: Number(id)
       }
     })
-    .then(() => res.sendStatus(200))
+    .then(() => res.send(id))
     .catch(error => next(error));
   }
 
