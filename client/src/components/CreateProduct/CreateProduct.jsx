@@ -11,6 +11,7 @@ function CreateProduct() {
     name: '',
     drug: ''
   });
+  const [inputErrorMessage, setInputErrorMessage] = useState('')
   const [productTypes, setProductTypes] = useState([]);
   const [productCreated, setProductCreated] = useState({});
 
@@ -32,6 +33,12 @@ function CreateProduct() {
   }, [storeNewProduct]);
 
   function handleChange(event) {
+    // validate form input
+    if (event.target.name === 'code' && validateForm(event.target.name, event.target.value) === false) {
+      setInputErrorMessage('El dódigo solo puede contener números');
+    } else {
+      setInputErrorMessage('');
+    }
     setNewProduct({
       ...newProductBody,
       [event.target.name]: event.target.value
@@ -47,6 +54,16 @@ function CreateProduct() {
       name: '',
       drug: ''
     });
+  }
+
+  function validateForm(input, data) {
+    if (input === 'code') {
+      if (data.length && (isNaN(data) || data < 1)) {
+        return false;
+      } else {
+        return true
+      }
+    }
   }
 
 
@@ -67,6 +84,7 @@ function CreateProduct() {
               onChange={handleChange}
               placeholder="Ej. 12345"
             />
+            {inputErrorMessage.length ? <span className="warning text-small mb-05">{inputErrorMessage}</span> : null}
           </div>
           <div className="form-group mb-05">
             <div className="form-group-type">

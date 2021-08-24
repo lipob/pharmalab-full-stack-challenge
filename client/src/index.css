@@ -132,6 +132,9 @@ label {
 .text-right {
   text-align: right;
 }
+.text-small {
+  font-size: 0.8em;
+}
 .w-20 {
   width: 20%;
 }
