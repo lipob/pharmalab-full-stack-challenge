@@ -6,7 +6,9 @@ function Header() {
   return (
     <div className="header-wrapper">
       <div>
-        <h1 className="headerLogo">{`<MBSoft/>`}</h1>
+        <Link to='/'>
+          <h1 className="headerLogo">{`<MBSoft/>`}</h1>
+        </Link>
         <nav>
           <Link to="/">Inicio</Link>
           <Link to="/products">Medicamentos</Link>
